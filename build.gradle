@@ -18,6 +18,19 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            // Support MapBox Android Navigation SDK download:
+            // https://docs.mapbox.com/android/beta/navigation/overview/#add-the-dependency
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                username = "mapbox"
+                // Use the secret token you stored in gradle.properties as the password
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+            }
+        }
     }
 }
 
